@@ -1,14 +1,14 @@
 <!doctype html>
-<html>
+<html ng-app="restaurantList">
   <head>
-    <title></title>
+    <title>Restaurants</title>
     <script src="lib/angular.js"></script>
     <script src="app.js"></script>
-    <script src="js/restaurants.js"></script>
+    <script src="js/RestaurantsController.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container" ng-controller="RestaurantsCtrl">
       <div class="row" ng-show="restaurants.length">
         <div class="col-md-12">
           <h4>Search Restaurants</h4>
@@ -25,11 +25,15 @@
           <h2 ng-show="restaurants.length && !filtered.length">No Results</h2>
           <ul>
             <li ng-repeat="item in filtered = (restaurants | filter:query)">
-              <span ng-click="editing = true" ng-hide="editing">{{item.name}} <a ng-click="deleteRestaurant(item)">Delete</a>
+              <span ng-click="editing = true" ng-hide="editing">
+                {{item.name}} - {{item.type}} - {{item.location}} - {{item.price}}<a ng-click="deleteRestaurant(item)" style="margin-left:20px; border: 2px solid grey; border-radius: 10px; padding: 0px 4px; link: grey;">Delete</a>
               </span>
               <span class="form-group" ng-show="editing" ng-submit="editing = false">
                 <form class="form-inline" role="form">
-                  <input type="text" class="form-control input-sm" ng-model"item.name" placeholder="Name" required/>
+                  <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+                  <input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/>
+                  <input type="text" class="form-control input-sm" ng-model="item.location" placeholder="Location" required/>
+                  <input type="text" class="form-control input-sm" ng-model="item.price" placeholder="Price" required/>
                   <button class="btn btn-deafult btn-sm" type="submit">Save</button>
                 </form>
               </span>

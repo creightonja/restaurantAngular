@@ -1,4 +1,4 @@
-restaurantList.controller('RestaurantCtrl', function RestaurantCtrl($scope){
+restaurantList.controller('RestaurantsCtrl', function RestaurantsCtrl($scope){
   $scope.restaurants = [
     { name: "Cultured Caveman", type: "Food cart",  location: "Downtown", price: "$$"},
     { name: "McDonald's", type: "Fast Food",  location: "Everywhere", price: "$"},
@@ -13,7 +13,7 @@ restaurantList.controller('RestaurantCtrl', function RestaurantCtrl($scope){
     $scope.restaurantPrice = null;
   };
 
-  $scope.deleteRestaurantName = function() {
+  $scope.deleteRestaurant = function(restaurant) {
     var index = $scope.restaurants.indexOf(restaurant);
     $scope.restaurants.splice(index, 1);
   };
